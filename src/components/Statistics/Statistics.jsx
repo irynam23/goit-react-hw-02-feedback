@@ -1,20 +1,23 @@
-import { Component } from 'react';
 import css from './Statistics.module.css';
 import PropTypes from 'prop-types';
 
-export class Statistics extends Component {
-  render() {
-    return (
-      <div className={css.wrap}>
-        <p>Good: {this.props.good}</p>
-        <p>Neutral: {this.props.neutral}</p>
-        <p>Bad: {this.props.bad}</p>
-        <p>Total: {this.props.total}</p>
-        <p>Positive feedback: {this.props.positivePercentage}%</p>
-      </div>
-    );
-  }
-}
+export const Statistics = ({
+  good,
+  neutral,
+  bad,
+  total,
+  positivePercentage,
+}) => {
+  return (
+    <div className={css.wrap}>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
+      <p>Total: {total}</p>
+      <p>Positive feedback: {positivePercentage}%</p>
+    </div>
+  );
+};
 
 Statistics.propTypes = {
   good: PropTypes.number.isRequired,

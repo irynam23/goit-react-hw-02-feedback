@@ -11,18 +11,25 @@ export class App extends Component {
     bad: 0,
   };
 
-  handleOnClick = e => {
-    const option = e.target.id;
-
+  handleOnClick = option => {
     this.setState(prevState => ({
       [option]: (prevState[option] += 1),
     }));
   };
 
+  countTotalFeedback = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  };
+  countPositiveFeedbackPercentage = () => {
+    return this.state.good
+      ? Math.ceil((this.state.good / this.countTotalFeedback()) * 100)
+      : 0;
+  };
+
   render() {
     const { good, neutral, bad } = this.state;
-    const total = good + neutral + bad;
-    const percentage = good ? Math.ceil((good / total) * 100) : 0;
+    const total = this.countTotalFeedback();
+    const percentage = this.countPositiveFeedbackPercentage();
 
     return (
       <div className="wrap">
